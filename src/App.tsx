@@ -1,25 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AppLayoutContainer from "./main/AppLayoutContainer";
+import { Switch, Route } from 'react-router-dom'
+import AuthContainer from "./main/Auth/AuthContainer";
+import ProfileContainer from "./main/Profile/ProfileContainer";
 
 function App() {
+    //todo логика для получения айди и статуса авторизации
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Switch>
+        <Route exact path='/' render={() => <AppLayoutContainer/>}/>
+        <Route exact path='/:isRegister' render={() => (<AuthContainer />)}/>
+        <Route exact path='/profile/:userId/:currentTab' render={() => <ProfileContainer />}/>
+      </Switch>
+
   );
 }
 
