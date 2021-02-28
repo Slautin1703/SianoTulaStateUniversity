@@ -3,14 +3,16 @@ import {Col} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import settings from '../../images/settings.png'
 import {HeaderTypes} from "../Constants";
+import logo from '../../images/logo.png'
 
 
-const Header = ({isAuth = false}: HeaderTypes) => {
+const Header = ({title,userId,isAuth = false}: HeaderTypes) => {
     return (
         <Col md={6} style={{ position: 'sticky', top: 0, background: '#fff', boxShadow: '0 0 10px rgba(0,0,0,0.5)' }}>
                 <div style={{ display:'flex', justifyContent: 'space-between',padding: '8px'}}>
                     <Link to={'/'} style={{alignSelf: 'center', fontWeight: 500, color: '#000', fontSize: 20}}>
-                        Ещё
+                        {userId ? `@${userId}` : title}
+                        {!isAuth ? <img width={100} src={logo} alt=""/>: ''}
                     </Link>
                     {
                         isAuth ? <div>
